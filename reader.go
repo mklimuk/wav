@@ -20,7 +20,7 @@ type Reader struct {
 	firstSamplePos uint32
 	dataBlocSize   uint32
 	bytesPerSample uint32
-	duration       time.Duration
+	Duration       time.Duration
 
 	samplesRead uint32
 	numSamples  uint32
@@ -39,7 +39,7 @@ func (wav Reader) String() string {
 	// calculated
 	msg += fmt.Sprintf("Number of samples : %d\n", wav.numSamples)
 	msg += fmt.Sprintf("Sound size        : %d bytes\n", wav.dataBlocSize)
-	msg += fmt.Sprintf("Sound duration    : %v\n", wav.duration)
+	msg += fmt.Sprintf("Sound duration    : %v\n", wav.Duration)
 
 	return msg
 }
@@ -141,7 +141,7 @@ readLoop:
 	}
 
 	wav.numSamples = wav.dataBlocSize / wav.bytesPerSample
-	wav.duration = time.Duration(float64(wav.numSamples)/float64(wav.chunkFmt.SampleRate)) * time.Second
+	wav.Duration = time.Duration(float64(wav.numSamples)/float64(wav.chunkFmt.SampleRate)) * time.Second
 
 	return nil
 }
